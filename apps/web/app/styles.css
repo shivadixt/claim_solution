@@ -1,0 +1,15 @@
+:root { color: #111827; background: #f9fafb; font-family: Inter, system-ui, sans-serif; }
+* { box-sizing: border-box; }
+body { margin: 0; }
+a { color: inherit; }
+.container { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+.header { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.button { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; border-radius: 6px; padding: 0 16px; background: #1a56db; color: white; font-weight: 600; text-decoration: none; }
+.hero { padding: 120px 0; background: #111827; color: white; }
+.hero h1 { max-width: 760px; margin: 0; font-size: clamp(2rem, 6vw, 3.5rem); }
+.hero p { max-width: 640px; color: #e5e7eb; font-size: 1.125rem; line-height: 1.6; }
+.section { padding: 64px 0; }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.card { padding: 24px; border: 1px solid #e5e7eb; border-radius: 8px; background: white; }
+@media (max-width: 767px) { .cards { grid-template-columns: 1fr; } }
+
