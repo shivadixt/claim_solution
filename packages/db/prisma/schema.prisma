@@ -49,6 +49,11 @@ enum RiskLevel {
   CRITICAL
 }
 
+enum ClaimType {
+  CASHLESS
+  REIMBURSEMENT
+}
+
 enum AssignmentStatus {
   PENDING
   ACTIVE
@@ -159,7 +164,7 @@ model Case {
   createdById  String     @map("created_by") @db.Uuid
   claimNumber  String     @map("claim_number")
   policyNumber String     @map("policy_number")
-  claimType    String     @map("claim_type")
+  claimType    ClaimType  @map("claim_type")
   claimAmount  Decimal    @map("claim_amount") @db.Decimal(15, 2)
   priority     Priority
   riskLevel    RiskLevel? @map("risk_level")

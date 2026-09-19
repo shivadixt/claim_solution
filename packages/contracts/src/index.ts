@@ -18,6 +18,9 @@ export type Priority = (typeof priorities)[number];
 export const riskLevels = priorities;
 export type RiskLevel = Priority;
 
+export const claimTypes = ['CASHLESS', 'REIMBURSEMENT'] as const;
+export type ClaimType = (typeof claimTypes)[number];
+
 export const roles = [
   'SUPER_ADMIN',
   'OPERATIONS_ADMIN',
@@ -32,10 +35,10 @@ export const roles = [
 export type RoleName = (typeof roles)[number];
 
 export type CreateCaseInput = {
-  clientId: string;
+  clientId?: string;
   claimNumber: string;
   policyNumber: string;
-  claimType: string;
+  claimType: ClaimType;
   claimAmount: number;
   priority: Priority;
   riskLevel?: RiskLevel;
@@ -44,9 +47,9 @@ export type CreateCaseInput = {
     lastName: string;
   };
   provider: {
-    hospitalId: string;
     name: string;
-    type: string;
+    hospitalName: string;
+    type?: string;
   };
 };
 
@@ -55,6 +58,8 @@ export type UpdateCaseInput = {
   riskLevel?: RiskLevel;
   version: number;
 };
+
+export type TriageCaseInput = UpdateCaseInput;
 
 export type CreateAssignmentInput = {
   investigatorId: string;
