@@ -260,6 +260,30 @@ async function main() {
       status: 'ACTIVE',
     },
   });
+
+  const investigatorRole = await prisma.role.findUniqueOrThrow({
+    where: { name: RoleName.INVESTIGATOR },
+  });
+
+  // 4. Field Investigator
+  await prisma.user.upsert({
+    where: { email: 'investigator@claimsolution.test' },
+    update: {
+      roleId: investigatorRole.id,
+      passwordHash: demoPasswordHash,
+      status: 'ACTIVE',
+    },
+    create: {
+      roleId: investigatorRole.id,
+      email: 'investigator@claimsolution.test',
+      firstName: 'Field',
+      lastName: 'Investigator',
+      passwordHash: demoPasswordHash,
+      passwordHistory: [],
+      passwordExpiresAt: new Date('2100-01-01T00:00:00.000Z'),
+      status: 'ACTIVE',
+    },
+  });
 }
 
 main()

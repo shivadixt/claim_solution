@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -49,83 +50,152 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="container section">
-      <h1>Sign in</h1>
+    <>
+      {/* Header Navigation */}
+      <header className="site-header">
+        <div className="container header-inner">
+          <Link href="/" className="brand-logo">
+            <span>ARD</span>
+            <span style={{ fontSize: '1rem', fontWeight: 600, color: '#475569' }}>
+              CLAIM SOLUTION
+            </span>
+          </Link>
 
-      {error && (
-        <div
-          id="login-error-message"
-          role="alert"
-          style={{
-            padding: '12px 16px',
-            marginBottom: '16px',
-            borderRadius: '6px',
-            backgroundColor: '#fee2e2',
-            color: '#b91c1c',
-            border: '1px solid #f87171',
-            fontSize: '0.875rem',
-            maxWidth: '340px',
-          }}
-        >
-          {error}
+          <div className="header-actions">
+            <Link href="/" className="btn btn-outline" style={{ fontSize: '0.875rem' }}>
+              ← Back to Home
+            </Link>
+          </div>
         </div>
-      )}
+      </header>
 
-      <form onSubmit={handleSubmit}>
-        <p>
-          <label htmlFor="email">Email</label>
-          <br />
-          <input
-            id="email"
-            name="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            autoComplete="email"
-            required
-            disabled={isLoading}
-            style={{
-              padding: '8px 12px',
-              borderRadius: '4px',
-              border: '1px solid #d1d5db',
-              width: '100%',
-              maxWidth: '340px',
-            }}
-          />
-        </p>
-        <p>
-          <label htmlFor="password">Password</label>
-          <br />
-          <input
-            id="password"
-            name="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            autoComplete="current-password"
-            required
-            disabled={isLoading}
-            style={{
-              padding: '8px 12px',
-              borderRadius: '4px',
-              border: '1px solid #d1d5db',
-              width: '100%',
-              maxWidth: '340px',
-            }}
-          />
-        </p>
-        <button
-          className="button"
-          type="submit"
-          disabled={isLoading}
+      <main style={{ minHeight: 'calc(100vh - 160px)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '40px 20px' }}>
+        <div
           style={{
-            opacity: isLoading ? 0.7 : 1,
-            cursor: isLoading ? 'not-allowed' : 'pointer',
+            width: '100%',
+            maxWidth: '440px',
+            backgroundColor: '#ffffff',
+            borderRadius: '24px',
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 20px 40px rgba(11, 25, 44, 0.08)',
+            padding: '40px',
           }}
         >
-          {isLoading ? 'Signing in...' : 'Sign in'}
-        </button>
-      </form>
-    </main>
+          <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+            <span className="overline-tag" style={{ marginBottom: '8px' }}>Portal Authentication</span>
+            <h1 style={{ fontSize: '1.75rem', fontWeight: 800, color: 'var(--navy-dark)', margin: '0 0 8px 0' }}>
+              Sign in to Account
+            </h1>
+            <p style={{ margin: 0, fontSize: '0.925rem', color: 'var(--text-muted)' }}>
+              Enter your credentials to access your portal.
+            </p>
+          </div>
+
+          {error && (
+            <div
+              id="login-error-message"
+              role="alert"
+              style={{
+                padding: '12px 16px',
+                marginBottom: '24px',
+                borderRadius: '8px',
+                backgroundColor: '#fee2e2',
+                color: '#b91c1c',
+                border: '1px solid #f87171',
+                fontSize: '0.875rem',
+              }}
+            >
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit}>
+            <div style={{ marginBottom: '20px' }}>
+              <label
+                htmlFor="email"
+                style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, color: 'var(--navy-dark)', marginBottom: '6px' }}
+              >
+                Work Email Address
+              </label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
+                placeholder="name@company.com"
+                required
+                disabled={isLoading}
+                style={{
+                  width: '100%',
+                  padding: '12px 16px',
+                  borderRadius: '10px',
+                  border: '1px solid #cbd5e1',
+                  fontSize: '0.95rem',
+                  outline: 'none',
+                }}
+              />
+            </div>
+
+            <div style={{ marginBottom: '28px' }}>
+              <label
+                htmlFor="password"
+                style={{ display: 'block', fontSize: '0.875rem', fontWeight: 600, color: 'var(--navy-dark)', marginBottom: '6px' }}
+              >
+                Password
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+                placeholder="••••••••••••"
+                required
+                disabled={isLoading}
+                style={{
+                  width: '100%',
+                  padding: '12px 16px',
+                  borderRadius: '10px',
+                  border: '1px solid #cbd5e1',
+                  fontSize: '0.95rem',
+                  outline: 'none',
+                }}
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="btn btn-navy"
+              disabled={isLoading}
+              style={{
+                width: '100%',
+                padding: '14px',
+                fontSize: '1rem',
+                opacity: isLoading ? 0.7 : 1,
+                cursor: isLoading ? 'not-allowed' : 'pointer',
+              }}
+            >
+              {isLoading ? 'Signing in...' : 'Sign in to Portal'}
+            </button>
+          </form>
+
+          <div
+            style={{
+              marginTop: '32px',
+              paddingTop: '20px',
+              borderTop: '1px solid #f1f5f9',
+              textAlign: 'center',
+              fontSize: '0.85rem',
+              color: 'var(--text-muted)',
+            }}
+          >
+            Need assistance? <Link href="/contact" style={{ color: 'var(--gold-accent)', fontWeight: 600 }}>Request Support</Link>
+          </div>
+        </div>
+      </main>
+    </>
   );
 }

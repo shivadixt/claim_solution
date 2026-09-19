@@ -52,48 +52,62 @@ export default function ContactPage() {
 
   return (
     <>
-      <header className="container header">
-        <strong>
-          <Link href="/" style={{ textDecoration: 'none' }}>
-            Claim Solution
+      {/* Header Navigation */}
+      <header className="site-header">
+        <div className="container header-inner">
+          <Link href="/" className="brand-logo">
+            <span>ARD</span>
+            <span style={{ fontSize: '1rem', fontWeight: 600, color: '#475569' }}>
+              CLAIM SOLUTION
+            </span>
           </Link>
-        </strong>
-        <nav aria-label="Main navigation">
-          <Link href="/" style={{ marginRight: '16px' }}>
-            Home
-          </Link>
-          <Link href="/login">Client login</Link>
-        </nav>
+
+          <div className="header-actions">
+            <Link href="/" className="btn btn-outline" style={{ fontSize: '0.875rem' }}>
+              ← Home
+            </Link>
+            <Link href="/login" className="btn btn-navy" style={{ fontSize: '0.875rem' }}>
+              Client Login
+            </Link>
+          </div>
+        </div>
       </header>
 
-      <main>
-        <section className="container section" style={{ maxWidth: '640px' }}>
-          <h1>Request a Consultation</h1>
-          <p style={{ color: '#4b5563', lineHeight: 1.6, marginBottom: '32px' }}>
-            Connect with our healthcare claims investigation, audit, and recovery team to discuss your organization&apos;s requirements.
-          </p>
+      <main className="section" style={{ minHeight: 'calc(100vh - 160px)' }}>
+        <div className="container" style={{ maxWidth: '680px' }}>
+          <div style={{ textAlign: 'center', marginBottom: '36px' }}>
+            <span className="overline-tag">B2B Consultation</span>
+            <h1 className="section-title" style={{ margin: '0 0 12px 0' }}>
+              Request a Consultation
+            </h1>
+            <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', lineHeight: 1.6, margin: 0 }}>
+              Connect with our healthcare claims investigation, audit, and recovery team to discuss your organization&apos;s requirements.
+            </p>
+          </div>
 
           {isSubmitted ? (
             <div
               role="status"
               id="contact-success-message"
               style={{
-                padding: '28px',
-                borderRadius: '8px',
+                padding: '36px',
+                borderRadius: '20px',
                 backgroundColor: '#ecfdf5',
                 border: '1px solid #10b981',
                 color: '#065f46',
+                textAlign: 'center',
               }}
             >
-              <h2 style={{ margin: '0 0 8px 0', fontSize: '1.25rem' }}>
-                Enquiry Submitted
+              <div style={{ fontSize: '2.5rem', marginBottom: '12px' }}>✓</div>
+              <h2 style={{ margin: '0 0 8px 0', fontSize: '1.5rem', fontWeight: 700 }}>
+                Enquiry Submitted Successfully
               </h2>
-              <p style={{ margin: '0 0 20px 0', fontSize: '1rem', lineHeight: 1.5 }}>
-                Thanks — we&apos;ll be in touch shortly.
+              <p style={{ margin: '0 0 24px 0', fontSize: '1rem', lineHeight: 1.5, color: '#047857' }}>
+                Thank you for reaching out. Our claims operations team will review your details and respond within 1 business day.
               </p>
               <button
                 type="button"
-                className="button"
+                className="btn btn-navy"
                 onClick={() => {
                   setIsSubmitted(false);
                   setName('');
@@ -103,11 +117,19 @@ export default function ContactPage() {
                   setMessage('');
                 }}
               >
-                Send another enquiry
+                Send Another Enquiry
               </button>
             </div>
           ) : (
-            <div className="card" style={{ padding: '32px' }}>
+            <div
+              style={{
+                backgroundColor: '#ffffff',
+                borderRadius: '24px',
+                border: '1px solid var(--border-color)',
+                padding: '40px',
+                boxShadow: '0 20px 40px rgba(11, 25, 44, 0.05)',
+              }}
+            >
               {error && (
                 <div
                   role="alert"
@@ -115,7 +137,7 @@ export default function ContactPage() {
                   style={{
                     padding: '12px 16px',
                     marginBottom: '24px',
-                    borderRadius: '6px',
+                    borderRadius: '8px',
                     backgroundColor: '#fee2e2',
                     border: '1px solid #ef4444',
                     color: '#991b1b',
@@ -127,8 +149,8 @@ export default function ContactPage() {
               )}
 
               <form onSubmit={handleSubmit} noValidate>
-                <p style={{ marginTop: 0 }}>
-                  <label htmlFor="name" style={{ fontWeight: 600, display: 'block', marginBottom: '6px' }}>
+                <div style={{ marginBottom: '20px' }}>
+                  <label htmlFor="name" style={{ fontWeight: 600, display: 'block', marginBottom: '6px', color: 'var(--navy-dark)' }}>
                     Full Name <span style={{ color: '#dc2626' }}>*</span>
                   </label>
                   <input
@@ -142,16 +164,17 @@ export default function ContactPage() {
                     placeholder="e.g. Rahul Sharma"
                     style={{
                       width: '100%',
-                      padding: '10px 12px',
-                      borderRadius: '6px',
-                      border: '1px solid #d1d5db',
-                      fontSize: '1rem',
+                      padding: '12px 16px',
+                      borderRadius: '10px',
+                      border: '1px solid #cbd5e1',
+                      fontSize: '0.95rem',
+                      outline: 'none',
                     }}
                   />
-                </p>
+                </div>
 
-                <p>
-                  <label htmlFor="company" style={{ fontWeight: 600, display: 'block', marginBottom: '6px' }}>
+                <div style={{ marginBottom: '20px' }}>
+                  <label htmlFor="company" style={{ fontWeight: 600, display: 'block', marginBottom: '6px', color: 'var(--navy-dark)' }}>
                     Company / Insurance Firm <span style={{ color: '#dc2626' }}>*</span>
                   </label>
                   <input
@@ -165,17 +188,18 @@ export default function ContactPage() {
                     placeholder="e.g. Star Health Insurance"
                     style={{
                       width: '100%',
-                      padding: '10px 12px',
-                      borderRadius: '6px',
-                      border: '1px solid #d1d5db',
-                      fontSize: '1rem',
+                      padding: '12px 16px',
+                      borderRadius: '10px',
+                      border: '1px solid #cbd5e1',
+                      fontSize: '0.95rem',
+                      outline: 'none',
                     }}
                   />
-                </p>
+                </div>
 
-                <p>
-                  <label htmlFor="email" style={{ fontWeight: 600, display: 'block', marginBottom: '6px' }}>
-                    Work Email <span style={{ color: '#dc2626' }}>*</span>
+                <div style={{ marginBottom: '20px' }}>
+                  <label htmlFor="email" style={{ fontWeight: 600, display: 'block', marginBottom: '6px', color: 'var(--navy-dark)' }}>
+                    Work Email Address <span style={{ color: '#dc2626' }}>*</span>
                   </label>
                   <input
                     id="email"
@@ -188,16 +212,17 @@ export default function ContactPage() {
                     placeholder="name@company.com"
                     style={{
                       width: '100%',
-                      padding: '10px 12px',
-                      borderRadius: '6px',
-                      border: '1px solid #d1d5db',
-                      fontSize: '1rem',
+                      padding: '12px 16px',
+                      borderRadius: '10px',
+                      border: '1px solid #cbd5e1',
+                      fontSize: '0.95rem',
+                      outline: 'none',
                     }}
                   />
-                </p>
+                </div>
 
-                <p>
-                  <label htmlFor="phone" style={{ fontWeight: 600, display: 'block', marginBottom: '6px' }}>
+                <div style={{ marginBottom: '20px' }}>
+                  <label htmlFor="phone" style={{ fontWeight: 600, display: 'block', marginBottom: '6px', color: 'var(--navy-dark)' }}>
                     Phone Number <span style={{ color: '#6b7280', fontWeight: 400 }}>(Optional)</span>
                   </label>
                   <input
@@ -210,16 +235,17 @@ export default function ContactPage() {
                     placeholder="+91 98765 43210"
                     style={{
                       width: '100%',
-                      padding: '10px 12px',
-                      borderRadius: '6px',
-                      border: '1px solid #d1d5db',
-                      fontSize: '1rem',
+                      padding: '12px 16px',
+                      borderRadius: '10px',
+                      border: '1px solid #cbd5e1',
+                      fontSize: '0.95rem',
+                      outline: 'none',
                     }}
                   />
-                </p>
+                </div>
 
-                <p>
-                  <label htmlFor="message" style={{ fontWeight: 600, display: 'block', marginBottom: '6px' }}>
+                <div style={{ marginBottom: '28px' }}>
+                  <label htmlFor="message" style={{ fontWeight: 600, display: 'block', marginBottom: '6px', color: 'var(--navy-dark)' }}>
                     Enquiry Details <span style={{ color: '#dc2626' }}>*</span>
                   </label>
                   <textarea
@@ -233,25 +259,27 @@ export default function ContactPage() {
                     placeholder="Briefly describe your claims portfolio, volume, or specific investigation/audit requirements..."
                     style={{
                       width: '100%',
-                      padding: '10px 12px',
-                      borderRadius: '6px',
-                      border: '1px solid #d1d5db',
-                      fontSize: '1rem',
+                      padding: '12px 16px',
+                      borderRadius: '10px',
+                      border: '1px solid #cbd5e1',
+                      fontSize: '0.95rem',
                       fontFamily: 'inherit',
                       resize: 'vertical',
+                      outline: 'none',
                     }}
                   />
-                </p>
+                </div>
 
                 <button
                   type="submit"
-                  className="button"
+                  className="btn btn-navy"
                   disabled={isLoading}
                   style={{
                     width: '100%',
+                    padding: '14px',
+                    fontSize: '1rem',
                     cursor: isLoading ? 'not-allowed' : 'pointer',
                     opacity: isLoading ? 0.7 : 1,
-                    marginTop: '8px',
                   }}
                 >
                   {isLoading ? 'Submitting enquiry...' : 'Submit Consultation Request'}
@@ -259,7 +287,7 @@ export default function ContactPage() {
               </form>
             </div>
           )}
-        </section>
+        </div>
       </main>
     </>
   );
